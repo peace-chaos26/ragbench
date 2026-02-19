@@ -1,0 +1,73 @@
+{
+  "query": "How do Helm charts use values.yaml?",
+  "dense_top_k": 10,
+  "rerank_top_n": 3,
+  "embedding_model": "openai:text-embedding-3-small",
+  "reranker_model": "BAAI/bge-reranker-base",
+  "timings": {
+    "embed_query_ms": 1007,
+    "retrieve_ms": 15,
+    "rerank_ms": 269,
+    "total_ms": 1291
+  },
+  "dense_results": [
+    {
+      "text": "Helm templates are rendered using values from values.yaml and the Go template language.",
+      "payload": {
+        "text": "Helm templates are rendered using values from values.yaml and the Go template language.",
+        "source": "demo"
+      },
+      "score": 0.6864675
+    },
+    {
+      "text": "Helm uses Go templating; values are injected via .Values and can be overridden via --set or values files.",
+      "payload": {
+        "text": "Helm uses Go templating; values are injected via .Values and can be overridden via --set or values files.",
+        "source": "demo"
+      },
+      "score": 0.6278623
+    },
+    {
+      "text": "Terraform state stores information about managed infrastructure and can be local or remote.",
+      "payload": {
+        "text": "Terraform state stores information about managed infrastructure and can be local or remote.",
+        "source": "demo"
+      },
+      "score": 0.25701374
+    },
+    {
+      "text": "A Kubernetes Deployment manages a ReplicaSet to keep a set of Pods running.",
+      "payload": {
+        "text": "A Kubernetes Deployment manages a ReplicaSet to keep a set of Pods running.",
+        "source": "demo"
+      },
+      "score": 0.23067223
+    }
+  ],
+  "reranked_results": [
+    {
+      "text": "Helm uses Go templating; values are injected via .Values and can be overridden via --set or values files.",
+      "payload": {
+        "text": "Helm uses Go templating; values are injected via .Values and can be overridden via --set or values files.",
+        "source": "demo"
+      },
+      "score": 0.8855801224708557
+    },
+    {
+      "text": "Helm templates are rendered using values from values.yaml and the Go template language.",
+      "payload": {
+        "text": "Helm templates are rendered using values from values.yaml and the Go template language.",
+        "source": "demo"
+      },
+      "score": 0.6860019564628601
+    },
+    {
+      "text": "Terraform state stores information about managed infrastructure and can be local or remote.",
+      "payload": {
+        "text": "Terraform state stores information about managed infrastructure and can be local or remote.",
+        "source": "demo"
+      },
+      "score": 0.000037369645724538714
+    }
+  ]
+}

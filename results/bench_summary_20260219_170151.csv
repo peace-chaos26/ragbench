@@ -1,0 +1,9 @@
+id,faithful,confidence,rationale,retrieval_ms
+helm_1,1,0.9,"Answer aligns with context about values.yaml, .Values, --set, and Go templating.",963
+k8s_1,1,1,"Answer directly matches chunk_0's statement about Deployment managing ReplicaSet to keep Pods running.",633
+tf_1,1,1,"Answer directly matches chunk_0's information about Terraform state.",831
+helm_2,1,0.9,"Answer matches chunk_0's info on --set and values files overriding values.yaml.",613
+mix_1,1,1,"Answer directly supported by all three chunks in context.",845
+
+overall_faithfulness_rate,1.000
+avg_retrieval_ms,777.0

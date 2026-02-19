@@ -1,0 +1,6 @@
+
+{"id":"helm_1","question":"How do Helm charts use values.yaml?","gold_answer":"Helm uses values.yaml to provide configuration values injected into templates via the .Values object.","must_contain":["values.yaml",".Values"]}
+{"id":"k8s_1","question":"What does a Kubernetes Deployment manage and why?","gold_answer":"A Deployment manages a ReplicaSet to keep a desired number of Pods running and enables rollouts/rollbacks.","must_contain":["ReplicaSet","Pods"]}
+{"id":"tf_1","question":"What is Terraform state used for?","gold_answer":"Terraform state stores mappings and metadata about managed infrastructure resources and helps Terraform plan changes.","must_contain":["state","managed"]}
+{"id":"helm_2","question":"How can Helm values be overridden at install time?","gold_answer":"You can override values using --set or by providing additional values files with -f/--values.","must_contain":["--set","values"]}
+{"id":"mix_1","question":"Does values.yaml belong to Terraform or Helm? Explain briefly.","gold_answer":"values.yaml is used by Helm for chart configuration; Terraform uses .tf files and state, not values.yaml.","must_contain":["Helm","Terraform"]}
