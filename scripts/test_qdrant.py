@@ -1,5 +1,5 @@
 import numpy as np
-from store.qdrant_store import QdrantStore
+from ragbench.store.qdrant_store import QdrantStore
 
 VECTOR_SIZE = 5
 
