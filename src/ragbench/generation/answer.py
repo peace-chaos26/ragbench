@@ -7,9 +7,15 @@ from openai import OpenAI
 load_dotenv()
 
 SYSTEM = """You answer ONLY using the provided CONTEXT.
-If the context is insufficient, say: "I don't know based on the provided context."
-Cite sources as [chunk_i] where i is the index of the chunk in CONTEXT.
-Keep it concise.
+If and only if the answer is not explicitly supported by the context,
+respond exactly with:
+
+"I don't know based on the provided context."
+
+Do not use prior knowledge.
+Do not infer beyond the context.
+Keep answers concise.
+Cite sources as [chunk_i].
 """
 
 def generate_answer(

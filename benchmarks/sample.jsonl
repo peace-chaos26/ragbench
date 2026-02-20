@@ -1,6 +1,16 @@
 
-{"id":"helm_1","question":"How do Helm charts use values.yaml?","gold_answer":"Helm uses values.yaml to provide configuration values injected into templates via the .Values object.","must_contain":["values.yaml",".Values"]}
-{"id":"k8s_1","question":"What does a Kubernetes Deployment manage and why?","gold_answer":"A Deployment manages a ReplicaSet to keep a desired number of Pods running and enables rollouts/rollbacks.","must_contain":["ReplicaSet","Pods"]}
-{"id":"tf_1","question":"What is Terraform state used for?","gold_answer":"Terraform state stores mappings and metadata about managed infrastructure resources and helps Terraform plan changes.","must_contain":["state","managed"]}
-{"id":"helm_2","question":"How can Helm values be overridden at install time?","gold_answer":"You can override values using --set or by providing additional values files with -f/--values.","must_contain":["--set","values"]}
-{"id":"mix_1","question":"Does values.yaml belong to Terraform or Helm? Explain briefly.","gold_answer":"values.yaml is used by Helm for chart configuration; Terraform uses .tf files and state, not values.yaml.","must_contain":["Helm","Terraform"]}
+{"id":"helm_1","question":"How do Helm charts use values.yaml?","gold_answer":"Helm uses values.yaml to provide configuration values injected into templates via the .Values object.","must_contain":["values.yaml",".Values"], "gold_doc_contains":[".Values"]}
+{"id":"k8s_1","question":"What does a Kubernetes Deployment manage and why?","gold_answer":"A Deployment manages a ReplicaSet to keep a desired number of Pods running and enables rollouts/rollbacks.","must_contain":["ReplicaSet","Pods"], "gold_doc_contains":["ReplicaSet"]}
+{"id":"tf_1","question":"What is Terraform state used for?","gold_answer":"Terraform state stores mappings and metadata about managed infrastructure resources and helps Terraform plan changes.","must_contain":["state","managed"], "gold_doc_contains":["Terraform state"]}
+{"id":"helm_2","question":"How can Helm values be overridden at install time?","gold_answer":"You can override values using --set or by providing additional values files with -f/--values.","must_contain":["--set","values"], "gold_doc_contains":["--set"]}
+{"id":"mix_1","question":"Does values.yaml belong to Terraform or Helm? Explain briefly.","gold_answer":"values.yaml is used by Helm for chart configuration; Terraform uses .tf files and state, not values.yaml.","must_contain":["Helm","Terraform"], "gold_doc_contains":["values.yml is used by Helm"]}
+{"id":"unans_1","question":"What programming language is Helm written in?","gold_answer":null,"must_contain":[], "gold_doc_contains":[]}
+{"id":"unans_2","question":"When was Terraform first released?","gold_answer":null,"must_contain":[], "gold_doc_contains":[]}
+{"id":"adv_1","question":"How do you override Helm values at install time? Mention two methods.","gold_answer":"Override via --set and via additional values files using -f/--values.","must_contain":["--set","-f"], "gold_doc_contains":[]}
+{"id":"adv_2","question":"If Helm uses values.yaml, does Terraform also use values.yaml?","gold_answer":"No. values.yaml is Helm-specific; Terraform uses .tf files and state.","must_contain":["No","Helm","Terraform"], "gold_doc_contains":[]}
+{"id":"adv_3","question":"What does Terraform state store, and is it required for Helm?","gold_answer":"Terraform state stores managed infra mappings; Helm does not use Terraform state.","must_contain":["state","Helm"], "gold_doc_contains":[]}
+{"id":"unans_3","question":"Is Helm written in Go or Rust?","gold_answer":null,"must_contain":[], "gold_doc_contains":[]}
+{"id":"unans_4","question":"Does Terraform use Go templates like Helm?","gold_answer":null,"must_contain":[], "gold_doc_contains":[]}
+{"id":"near_1","question":"Does Helm require values.yaml to work?","gold_answer":null,"must_contain":[], "gold_doc_contains":[]}
+{"id":"tempt_1","question":"Since Helm uses Go templates, is Terraform also based on Go templates?","gold_answer":null,"must_contain":[], "gold_doc_contains":[]}
+{"id":"tempt_2","question":"values.yaml is a configuration file. Is it mandatory in Helm installs?","gold_answer":null,"must_contain":[], "gold_doc_contains":[]}

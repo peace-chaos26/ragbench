@@ -3,7 +3,7 @@ import uuid
 from typing import List, Dict, Any
 
 from qdrant_client import QdrantClient
-from qdrant_client.models import VectorParams, Distance
+from qdrant_client.models import VectorParams, Distance, PointStruct
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -41,29 +41,27 @@ class QdrantStore:
 
         print(f"Created collection '{self.collection_name}'.")
 
-    def upsert(self, vectors: List[List[float]], payloads: List[Dict[str, Any]]):
+    def upsert(self, vectors: List[List[float]], payloads: List[Dict[str, Any]], batch_size: int = 128):
 
-        existing = {c.name for c in self.client.get_collections().collections}
-        if self.collection_name not in existing:
-            raise RuntimeError(
-                f"Collection '{self.collection_name}' does not exist. Call create_collection() first."
+        assert len(vectors) == len(payloads), "vectors and payloads must align"
+
+        n = len(vectors)
+        for start in range(0, n, batch_size):
+            end = min(start + batch_size, n)
+
+            points = [
+                PointStruct(
+                    id=i,
+                    vector = vectors[i],
+                    payload = payloads[i],
+                    )
+                for i in range(start, end)
+            ]
+
+            self.client.upsert(
+                collection_name=self.collection_name,
+                points=points
             )
-
-        points = []
-        for vector, payload in zip(vectors, payloads):
-            points.append(
-                {
-                    "id": str(uuid.uuid4()),
-                    "vector": vector,
-                    "payload": payload,
-                }
-            )
-
-        self.client.upsert(
-            collection_name=self.collection_name,
-            points=points,
-        )
-        print(f"Inserted {len(points)} points.")
 
     def search(self, query_vector: list[float], top_k: int = 3):
         # Newer qdrant-client API
@@ -84,3 +82,24 @@ class QdrantStore:
             limit=top_k,
             with_payload=True,
         )
+    
+    
+
+    def recreate_collection(self):
+        # Delete if exists (ignore if it doesn't)
+        try:
+            self.client.delete_collection(collection_name=self.collection_name)
+        except Exception:
+            pass
+
+        # Create fresh
+        self.client.create_collection(
+            collection_name=self.collection_name,
+            vectors_config=VectorParams(
+                size=self.vector_size,
+                distance=Distance.COSINE,
+            ),
+        )
+
+
+

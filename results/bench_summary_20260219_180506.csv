@@ -1,0 +1,11 @@
+id,faithful,confidence,rationale,retrieval_ms
+helm_1,1,0.9,"Answer matches context details about values.yaml usage and overrides.",1727
+k8s_1,1,1,"Answer directly matches chunk_0's statement about Deployment managing ReplicaSet to keep Pods running.",1465
+tf_1,1,1,"Answer directly matches chunk_0's statement about Terraform state.",604
+helm_2,1,0.9,"Answer matches chunk_0's info on --set and values files for overriding Helm values.",713
+mix_1,1,1,"Answer directly supported by chunks 0 and 1 about Helm and values.yaml.",660
+unans_1,1,1,"Context only mentions Go templates, not Helm's implementation language.",592
+unans_2,1,1,"Context does not mention Terraform or its release date.",566
+
+overall_faithfulness_rate,1.000
+avg_retrieval_ms,903.9

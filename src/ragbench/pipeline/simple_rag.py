@@ -3,6 +3,7 @@ from typing import List, Dict, Any
 
 from ragbench.store.qdrant_store import QdrantStore
 from ragbench.embed.providers import OpenAIEmbeddingProvider
+from ragbench.embed.local_provider import LocalSTEmbeddingProvider
 from ragbench.rerank.providers import CrossEncoderReranker
 
 def ms():
@@ -16,8 +17,17 @@ def run_rag(
     use_rerank: bool = True,
     rerank_model: str = "BAAI/bge-reranker-base",
     rerank_top_n: int = 3,
+    embed_kind: str = "openai"
 ) -> Dict[str, Any]:
-    embedder = OpenAIEmbeddingProvider(model=embed_model)
+    
+    if embed_kind == "openai":
+        embedder = OpenAIEmbeddingProvider(model=embed_model)
+    elif embed_kind == "local":
+        embedder = LocalSTEmbeddingProvider(embed_model)
+    else:
+        raise ValueError("embed_kind must be 'openai' or 'local'")
+
+    # embedder = OpenAIEmbeddingProvider(model=embed_model)
     store = QdrantStore(collection_name=collection, vector_size=embedder.dim)
 
     t1 = ms()
@@ -55,4 +65,6 @@ def run_rag(
         },
         "dense_results": [{"text": c[0], "payload": c[1], "score": c[2]} for c in candidates],
         "context_chunks": context_chunks,
+        "top_dense_score": candidates[0][2] if candidates else 0,
+        "top_rerank_score": reranked[0].rerank_score if reranked else None
     }
